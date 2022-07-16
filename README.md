@@ -13,8 +13,7 @@ This toolkit aims to support complex 3D simulation with agent-based models in Ne
 
 ### Screenshot
 
-![NetLogo Interface](images/AB3DMT-5.png)
-
+![NetLogo Interface](images/ab3dmt-5.png)
 ### Experiments
 
 #### 3D Model Loading
