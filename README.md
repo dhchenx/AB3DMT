@@ -14,6 +14,11 @@ This toolkit aims to support complex 3D simulation with agent-based models in Ne
 ### Screenshot
 
 ![NetLogo Interface](images/ab3dmt-5.png)
+
+![DLA](gifs/DLA.gif)
+
+More animation videos can be found in [our Youtube playlist](https://www.youtube.com/playlist?list=PLzHAI-8E5tBCPq3QCMmZdYaxIW-93fa5N ).
+
 ### Experiments
 
 #### 3D Model Loading (Click pictures for animation videos)
