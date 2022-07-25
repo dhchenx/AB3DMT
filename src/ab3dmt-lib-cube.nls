@@ -1,0 +1,315 @@
+; This library includes functions to create cube space in NetLogo 3D so as to capture points (agents) in the target cube
+
+to show-msg [text]
+    user-message text
+end
+
+to-report show-cube [x y z width height depth hide]
+  
+  ;let x 2
+  ;let y 3
+  ;let z 6
+  ;let width 5
+  ;let height 10
+  ;let depth 12
+  
+  ; let hide false
+  
+  ask turtles with [object-type =  "box"][
+   die 
+  ]
+  
+  create-turtles 1 [
+    setxyz x + width / 2 y  z
+    facexyz x + width y  z 
+    set shape "line"
+    set size width
+    set color yellow
+    set object-type "box"
+    set hidden? hide
+  ]
+  
+  create-turtles 1 [
+    setxyz x y z
+    
+    set shape "dot"
+    set size 2
+    set color red
+    set object-type "box"
+    set hidden? hide
+  ]
+  
+create-turtles 1 [
+    setxyz x  y + height / 2 z
+    facexyz x  y + height  z 
+    set shape "line"
+    set size height
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+     create-turtles 1 [
+    setxyz x + width  y + height / 2 z
+    facexyz x + width  y + height  z 
+    set shape "line"
+    set size height
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+
+   create-turtles 1 [
+    setxyz x + width / 2 y  z -  depth 
+    facexyz x + width y  z - depth 
+    set shape "line"
+    set size width
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+    create-turtles 1 [
+    setxyz x + width / 2 y + height  z -  depth 
+    facexyz x + width y + height  z - depth 
+    set shape "line"
+    set size width
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+    create-turtles 1 [
+    setxyz x  y + height / 2 z  -  depth 
+    facexyz x  y + height   z - depth 
+    set shape "line"
+    set size height
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+    create-turtles 1 [
+    setxyz x + width / 2 y + height  z
+    facexyz x + width y + height z 
+    set shape "line"
+    set size width
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+    create-turtles 1 [
+    setxyz x + width   y + height / 2 z  -  depth 
+    facexyz x + width  y + height   z - depth 
+    set shape "line"
+    set size height
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+        create-turtles 1 [
+    setxyz x + width   y + height  z - depth / 2
+    facexyz x + width  y + height   z - depth 
+    set shape "line"
+    set size depth
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+   create-turtles 1 [
+    setxyz x   y + height  z - depth / 2
+    facexyz x  y + height   z - depth 
+    set shape "line"
+    set size depth
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+       create-turtles 1 [
+    setxyz x + width   y   z - depth / 2
+    facexyz x + width  y   z - depth 
+    set shape "line"
+    set size depth
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  
+         create-turtles 1 [
+    setxyz x   y   z - depth / 2
+    facexyz x  y   z - depth 
+    set shape "line"
+    set size depth
+    set color yellow
+      set object-type "box"
+    set hidden? hide
+  ]
+  let result []
+  set result (list (list x  (x + width))  (list y  (y + height)) (list (z - depth) z))
+  
+  report result
+  
+end
+
+to-report is-in-cube [point corrs]
+ 
+  
+  let x item 0 point
+  let y item 1 point
+  let z item 2 point
+  
+  let xx item 0 corrs
+  let yy item 1 corrs
+  let zz item 2 corrs
+  
+  let x1 item 0 xx
+  let x2 item 1 xx
+  
+  ifelse x >= x1 and x <= x2 and y >= item 0 yy and y <= item 1 yy and z >= item 0 zz and z <= item 1 zz 
+  [
+    report true
+  ][
+     
+      report false
+  ]
+ 
+end
+
+to clear-all-cube
+  ask turtles with [object-type = "box"][die]
+end
+
+to scan-from-y [my-world-min-x my-world-max-x my-world-min-y my-world-max-y my-world-min-z my-world-max-z my-scan-thick only-render-cube my-hide-cube]
+  
+   let cur-y my-world-min-y 
+  while [cur-y < my-world-max-y] [
+    
+    let r show-cube my-world-min-x cur-y my-world-max-z (my-world-max-x - my-world-min-x) scan-thick (my-world-max-z - my-world-min-z) my-hide-cube
+    
+     ask turtles with [object-type = "human"][
+       ifelse only-render-cube =  true [
+            ifelse is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ][
+          set color blue
+      ]
+      ]
+      [
+    if is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ]
+      ]
+      
+     
+  ]
+     set cur-y cur-y + my-scan-thick
+     tick
+  ]
+  
+  clear-all-cube
+  
+ 
+  
+end
+
+
+to scan-from-x [my-world-min-x my-world-max-x my-world-min-y my-world-max-y my-world-min-z my-world-max-z my-scan-thick only-render-cube my-hide-cube]
+  
+   let cur-x my-world-min-x 
+  while [cur-x < my-world-max-x] [
+    
+    let r show-cube cur-x my-world-min-y my-world-max-z  scan-thick (my-world-max-y - my-world-min-y) (my-world-max-z - my-world-min-z) my-hide-cube
+    
+     ask turtles with [object-type = "human"][
+       ifelse only-render-cube =  true [
+            ifelse is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ][
+          set color blue
+      ]
+      ]
+      [
+    if is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ]
+      ]
+      
+     
+  ]
+     set cur-x cur-x + my-scan-thick
+    tick
+  ]
+  
+  clear-all-cube
+  
+  
+  
+end
+
+to scan-from-z [my-world-min-x my-world-max-x my-world-min-y my-world-max-y my-world-min-z my-world-max-z my-scan-thick only-render-cube my-hide-cube]
+  
+   let cur-z my-world-min-z 
+  while [cur-z < my-world-max-z] [
+    
+    let r show-cube my-world-min-x my-world-min-y cur-z (my-world-max-x - my-world-min-x) (my-world-max-y - my-world-min-y)  scan-thick  my-hide-cube
+    
+     ask turtles with [object-type = "human"][
+       ifelse only-render-cube =  true [
+            ifelse is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ][
+          set color blue
+      ]
+      ]
+      [
+    if is-in-cube (list xcor ycor zcor) r [
+       
+        set color red
+        
+    ]
+      ]
+      
+     
+  ]
+     set cur-z cur-z + my-scan-thick
+      tick
+  ]
+  
+  clear-all-cube
+  
+
+  
+end
+
+to wiggle-agents
+  ask turtles with [object-type = "human"] [ fd 0.1 left random 90 tilt-up random 90 ]
+  display
+end
+
+to draw-cube
+  let r show-cube random-xcor random-ycor random-zcor cube-width cube-height cube-depth hide-cube?
+  ask turtles with [object-type = "human"][
+    if is-in-cube (list xcor ycor zcor) r [
+        set color red
+    ]
+  
+  ]
+   
+end
+
+
