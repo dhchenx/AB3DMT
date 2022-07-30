@@ -1,6 +1,8 @@
-##  Agent-based 3D Modeling Toolkit
+##  Agent-based 3D Modeling Toolkit (AB3DMT)
 
-This toolkit aims to support complex 3D simulation with agent-based models in NetLogo. 
+This toolkit aims to support complex 3D simulation with agent-based models in [NetLogo](https://ccl.northwestern.edu/netlogo/). 
+
+ Our study proposes an automated agent-based 3D human body modeling approach for complex NetLogo simulation. We developed the open-source agent-based 3D modeling toolkit (AB3DMT) to integrate a variety of human body-related 3D models and the proposed 3D data processing techniques with adjustable parameter sets.
 
 ### Functions 
 
@@ -10,6 +12,8 @@ This toolkit aims to support complex 3D simulation with agent-based models in Ne
 - 3D Particle Collision
 - Infrared 3D Data Rendering
 
+Animation videos can be found in [our Youtube playlist](https://www.youtube.com/playlist?list=PLzHAI-8E5tBCPq3QCMmZdYaxIW-93fa5N).
+
 
 ### Screenshot
 
@@ -17,11 +21,12 @@ This toolkit aims to support complex 3D simulation with agent-based models in Ne
 
 ![DLA](gifs/DLA.gif)
 
-More animation videos can be found in [our Youtube playlist](https://www.youtube.com/playlist?list=PLzHAI-8E5tBCPq3QCMmZdYaxIW-93fa5N ).
 
 ### Experiments
 
-#### 3D Model Loading (Click pictures for animation videos)
+Left click images below to watch simulation animation!
+
+#### 3D Model Loading 
 
 [![3D Model Loading](images/AB3DMT-5-view.png)](https://www.youtube.com/watch?v=uVfi-EXwxXE)
 
