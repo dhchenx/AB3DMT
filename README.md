@@ -6,9 +6,9 @@ This toolkit aims to support complex 3D simulation with agent-based models in [N
 
 ### Functions 
 
-- Import 3D Model into NetLogo [[Demo Link]](http://modelingcommons.org/browse/one_model/7047#model_tabs_browse_info)
+- Import 3D Model into NetLogo [[Model]](http://modelingcommons.org/browse/one_model/7047#model_tabs_browse_info)
 - 3D Agent Visiting
-- 3D Model Scanning
+- 3D Model Scanning [[Model]](http://modelingcommons.org/browse/one_model/7048#model_tabs_browse_files)
 - 3D Particle Collision
 - Infrared 3D Data Rendering
 
