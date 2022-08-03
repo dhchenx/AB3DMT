@@ -50,4 +50,10 @@ Left click images below to watch simulation animation!
 
 MIT
 
+## Citation
+
+Please cite our GitHub project if the model is used in your research.
+
+Donghua Chen (2022). Agent-based 3D modeling toolkit (Version 0.0.7) [Source code]. https://github.com/dhchenx/AB3DMT. [2022-08-03].
+
 
